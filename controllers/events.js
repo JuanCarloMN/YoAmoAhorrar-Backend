@@ -4,7 +4,7 @@ const Evento = require('../models/Evento');
 const obtenerEventos = async ( req, res = response ) => {
     try {
 
-        const eventos = await Evento.find().populate('user', 'name');
+        const eventos = await Evento.find().populate('usuario', 'nombre');
 
         res.status(200).json({
             ok: true,
@@ -25,7 +25,7 @@ const crearEvento = async ( req, res = response ) => {
 
     try {
 
-        evento.user = req.uid;
+        evento.usuario = req.uid;
         const eventoGuardado = await evento.save();
 
         res.status(201).json({
@@ -58,7 +58,7 @@ const actualizarEvento = async ( req, res = response ) => {
             });
         }
 
-        if ( evento.user.toString() != uid ) {
+        if ( evento.usuario.toString() != uid ) {
             return res.status(401).json({
                 ok: false,
                 msg: 'El usuario no está autorizado para actualizar el evento'
@@ -67,7 +67,7 @@ const actualizarEvento = async ( req, res = response ) => {
 
         const nuevoEvento = {
             ...req.body,
-            user: uid
+            usuario: uid
         }
         
         const eventoActualizado = await Evento.findByIdAndUpdate( eventoId, nuevoEvento, { new: true} );
@@ -93,7 +93,6 @@ const eliminarEvento = async ( req, res = response ) => {
     try {
 
         const evento = await Evento.findById( eventoId );
-        console.log(evento);
 
         if ( !evento ) {
             return res.status(404).json({
@@ -102,7 +101,7 @@ const eliminarEvento = async ( req, res = response ) => {
             });
         }
 
-        if ( evento.user.toString() != uid ) {
+        if ( evento.usuario.toString() != uid ) {
             return res.status(401).json({
                 ok: false,
                 msg: 'El usuario no está autorizado para eliminar el evento'

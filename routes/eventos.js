@@ -21,11 +21,12 @@ router.get( '/', obtenerEventos );
 
 // Crear eventos
 router.post( 
-    '/new', 
+    '/nuevo', 
     [
-        check( 'title', 'El título es obligatorio').not().isEmpty(),
-        check('start', 'Fecha de inicio es obligatoria').custom( isDate ),
-        check('end', 'Fecha de finalización es obligatoria').custom( isDate ),
+        check('titulo', 'El título del evento es obligatorio').not().isEmpty(),
+        check('tipo', 'El tipo de evento es obligatorio').not().isIn( 1, 2, 3, 4, 5 ),
+        check('inicio', 'Fecha de inicio del evento es obligatoria').custom( isDate ),
+        check('fin', 'Fecha de finalización del evento es obligatoria').custom( isDate ),
         fieldsValidate
     ],
     crearEvento );
@@ -34,9 +35,10 @@ router.post(
 router.put( 
     '/:id', 
     [
-        check( 'title', 'El título es obligatorio').not().isEmpty(),
-        check('start', 'Fecha de inicio es obligatoria').custom( isDate ),
-        check('end', 'Fecha de finalización es obligatoria').custom( isDate ),
+        check('titulo', 'El título del evento es obligatorio').not().isEmpty(),
+        check('tipo', 'El tipo de evento es obligatorio').not().isIn( 1, 2, 3, 4, 5 ),
+        check('inicio', 'Fecha de inicio es obligatoria').custom( isDate ),
+        check('fin', 'Fecha de finalización es obligatoria').custom( isDate ),
         fieldsValidate
     ],
     actualizarEvento );

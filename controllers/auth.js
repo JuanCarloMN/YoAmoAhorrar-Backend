@@ -5,8 +5,9 @@ const Usuario = require('../models/Usuario');
 const { generarJWT } = require('../helpers/jwt');
 
 const crearUsuario = async ( req, res = response ) => {
-    const { name, email, password } = req.body;
+    const { nombre, email, password } = req.body;
 
+    console.log({nombre});
     try {
         let usuario = await Usuario.findOne({ email });
         console.log( usuario );
@@ -27,14 +28,14 @@ const crearUsuario = async ( req, res = response ) => {
         await usuario.save();
 
         // Generar Token JWT
-        const token = await generarJWT( usuario.id, usuario.name );
+        const token = await generarJWT( usuario.id, usuario.nombre );
 
         // Todo correcto
         res.status(201).json({
             ok: true,
             msg: 'El usuario se registró de manera correcta',
             uid: usuario.id,
-            name: usuario.name,
+            nombre: usuario.nombre,
             token
         })
     } catch (error) {
@@ -52,7 +53,6 @@ const loginUsuario = async ( req, res = response ) => {
     try {
         
         let usuario = await Usuario.findOne({ email });
-        console.log( usuario );
             
         if ( !usuario ) {
             return res.status(400).json({
@@ -72,14 +72,14 @@ const loginUsuario = async ( req, res = response ) => {
         }
 
         // Generar Token JWT
-        const token = await generarJWT( usuario.id, usuario.name );
+        const token = await generarJWT( usuario.id, usuario.nombre );
 
         // Todo correcto
         res.status(200).json({
             ok: true,
             msg: 'login',
             uid: usuario.id,
-            name: usuario.name,
+            nombre: usuario.nombre,
             token
         })
 
@@ -94,15 +94,13 @@ const loginUsuario = async ( req, res = response ) => {
 };
 
 const revalidarToken = async ( req, res = response ) => {
-    
-    const { uid, name } = req;
-    
-    const token = await generarJWT( uid, name );
+    const { uid, nombre } = req;
+    const token = await generarJWT( uid, nombre );
 
     res.json({
         ok: true,
         uid,
-        name,
+        nombre,
         token
     })
 };

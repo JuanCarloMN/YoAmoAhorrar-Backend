@@ -3,22 +3,26 @@ const Usuario = require('./Usuario');
 
 const EventoShema = Schema({
 
-    title: {
+    titulo: {
         type: String,
         required: true
     },
-    notes: {
+    notas: {
         type: String,
     },
-    start: {
+    tipo: {
+        type: Number,
+        required: true
+    },
+    inicio: {
         type: Date,
         required: true
     },
-    end: {
+    fin: {
         type: Date,
         required: true
     },
-    user: {
+    usuario: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
         required: true
