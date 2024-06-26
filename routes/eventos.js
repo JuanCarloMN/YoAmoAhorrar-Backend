@@ -1,6 +1,6 @@
 /*
     Rutas de Eventos
-    host + /api/event
+    host + /api/eventos
 */
 
 const { Router } = require('express');
@@ -9,7 +9,7 @@ const { check } = require('express-validator');
 const { isDate } = require('../helpers/isDate');
 const { fieldsValidate } = require('../middlewares/fields-validate');
 const { jwtValidate } = require('../middlewares/jwt-validate');
-const { obtenerEventos, crearEvento, actualizarEvento, eliminarEvento } = require('../controllers/events');
+const { obtenerEventos, crearEvento, actualizarEvento, eliminarEvento } = require('../controllers/eventos');
 
 const router = Router();
 

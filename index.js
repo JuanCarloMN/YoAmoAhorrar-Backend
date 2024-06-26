@@ -23,6 +23,7 @@ app.use( express.json() );
 // Rutas
 app.use( '/api/auth', require('./routes/auth') );
 app.use( '/api/eventos', require('./routes/eventos') );
+app.use( '/api/clientes', require('./routes/clientes') );
 
 app.use( '*', ( req, res ) => {
     res.sendFile( path.join( __dirname, 'public/index.html') );
