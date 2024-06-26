@@ -1,12 +1,7 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const ProspectoSchema = Schema({
 
-    prospectoClave: {
-        type: String,
-        require: true,
-        unique: true
-    },
     prospectoNombre: {
         type: String,
         require: true,
@@ -51,12 +46,16 @@ const ProspectoSchema = Schema({
         type: Number,
         require: true,
     },
+    prospectoColonia: {
+        type: String,
+        required: true,
+    },
     prospectoCiudad: {
-        type: Number,
+        type: String,
         require: true,
     },
     prospectoEstado: {
-        type: Number,
+        type: String,
         require: true,
     },
     prospectoReferido: {
@@ -73,4 +72,10 @@ const ProspectoSchema = Schema({
     },
 });
 
-module.exports = model( 'Prospecto', ProspectoSchema )
+ProspectoSchema.method('toJSON', function() {
+    const { __v, _id, ...object } = this.toObject();
+    object.id = _id;
+    return object;
+});
+
+module.exports = model( 'Prospecto', ProspectoSchema );
