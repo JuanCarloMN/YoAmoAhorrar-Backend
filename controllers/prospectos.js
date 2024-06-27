@@ -5,7 +5,6 @@ const obtenerProspectos = async ( req, res = response ) => {
     try {
 
         const prospectos = await Prospecto.find();
-
         res.status(200).json({
             ok: true,
             prospectos
@@ -26,7 +25,6 @@ const agregarProspecto = async ( req, res = response ) => {
     try {
 
         const prospectoGuardado = await prospecto.save();
-
         res.status(201).json({
             ok: true,
             prospecto: prospectoGuardado
@@ -49,7 +47,6 @@ const actualizarProspecto = async ( req, res = response ) => {
     try {
 
         const prospecto = await Prospecto.findById( prospectoId );
-
         if ( !prospecto ) {
             return res.status(404).json({
                 ok: false,
@@ -83,7 +80,6 @@ const eliminarProspecto = async ( req, res = response ) => {
     try {
 
         const prospecto = await Prospecto.findById( prospectoId );
-
         if ( !prospecto ) {
             return res.status(404).json({
                 ok: false,

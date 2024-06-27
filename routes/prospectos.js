@@ -10,8 +10,6 @@ const { fieldsValidate } = require('../middlewares/fields-validate');
 const { jwtValidate } = require('../middlewares/jwt-validate');
 const { agregarProspecto, obtenerProspectos, actualizarProspecto, eliminarProspecto } = require('../controllers/prospectos');
 
-// const { obtenerEventos, crearEvento, actualizarEvento, eliminarEvento } = require('../controllers/eventos');
-
 const router = Router();
 
 // Todos tienen que pasar por la validación del JWT
