@@ -8,11 +8,11 @@ const ClienteSchema = Schema({
     },
     clienteApellidoP: {
         type: String,
-        required: true,
+        required: false,
     },
     clienteApellidoM: {
         type: String,
-        required: true,
+        required: false,
     },
     clienteCelular: {
         type: String,
@@ -24,7 +24,7 @@ const ClienteSchema = Schema({
     },
     clienteTelefono: {
         type: String,
-        required: true,
+        required: false,
     },
     clienteRFC: {
         type: String,
@@ -60,7 +60,7 @@ const ClienteSchema = Schema({
     },
     clienteReferido: {
         type: String,
-        required: true,
+        required: false,
     },
     clienteDesde: {
         type: Date,
@@ -68,7 +68,7 @@ const ClienteSchema = Schema({
     },
     clienteNotas: {
         type: String,
-        required: true,
+        required: false,
     }
 });
 

@@ -26,4 +26,3 @@ CatalogoSchema.method('toJSON', function() {
 
 module.exports = model( 'Catalogo', CatalogoSchema )
 
-// Mandato formador de equipo: Integrar y formar equipos altamente capacitados, motivados y satisfechos en su trabajo con el fin de alcanzar resultados

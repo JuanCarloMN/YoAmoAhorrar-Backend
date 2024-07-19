@@ -26,6 +26,7 @@ app.use( '/api/eventos', require('./routes/eventos') );
 app.use( '/api/clientes', require('./routes/clientes') );
 app.use( '/api/prospectos', require('./routes/prospectos') );
 app.use( '/api/catalogos', require('./routes/catalogos') );
+app.use( '/api/codigoPostal', require('./routes/codigoPostal') );
 
 app.use( '*', ( req, res ) => {
     res.sendFile( path.join( __dirname, 'public/index.html') );
