@@ -188,11 +188,8 @@ const eliminarDato = async ( req, res = response ) => {
             });
         }
 
-        console.log({catalogo});
-
         const datoEliminar = await Catalogo.updateOne( { _id : catalogo.id }, { $pull : { "catalogoDatos": { "_id": dato.idEliminar } } } );
         
-        console.log({datoEliminar});
         if ( datoEliminar.modifiedCount > 0 ) {
             res.status(200).json({
                 ok: true,

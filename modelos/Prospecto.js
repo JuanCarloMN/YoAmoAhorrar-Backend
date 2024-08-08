@@ -4,47 +4,59 @@ const ProspectoSchema = Schema({
 
     prospectoNombre: {
         type: String,
-        require: true,
+        required: true,
     },
     prospectoApellidoP: {
         type: String,
-        require: true,
+        required: false,
     },
     prospectoApellidoM: {
         type: String,
-        require: true,
-    },
-    prospectoCelular: {
-        type: String,
-        require: true,
-    },
-    prospectoEmail: {
-        type: String,
-        require: true,
-    },
-    prospectoTelefono: {
-        type: String,
-        require: true,
+        required: false,
     },
     prospectoRFC: {
         type: String,
-        require: true,
+        required: true,
     },
     prospectoCURP: {
         type: String,
-        require: true,
+        required: true,
     },
     prospectoNacimiento: {
         type: Date,
-        require: true,
+        required: true,
+    },
+    prospectoEstadoCivil: {
+        type: String,
+        required: false
+    },
+    prospectoSexo: {
+        type: String,
+        required: false
+    },
+    prospectoEscolaridad: {
+        type: String,
+        required: false
+    },
+    prospectoCelular: {
+        type: String,
+        required: true,
+    },
+    prospectoTelefono: {
+        type: String,
+        required: false,
+    },
+    prospectoEmail: {
+        type: String,
+        required: true,
     },
     prospectoDireccion: {
         type: String,
-        require: true,
+        required: true,
     },
     prospectoCP: {
         type: Number,
-        require: true,
+        required: true,
     },
     prospectoColonia: {
         type: String,
@@ -52,15 +64,65 @@ const ProspectoSchema = Schema({
     },
     prospectoCiudad: {
         type: String,
-        require: true,
+        required: true,
     },
     prospectoEstado: {
         type: String,
-        require: true,
+        required: true,
+    },
+    prospectoEmpresa: {
+        type: String,
+        required: false
+    },
+    prospectoPuesto: {
+        type: String,
+        required: false
+    },
+    prospectoAntiguedad: {
+        type: String,
+        required: false
+    },
+    prospectoActividades: {
+        type: String,
+        required: false
+    },
+    prospectoConyugue: {
+        type: String,
+        required: false
+    },
+    prospectoNumeroHijos: {
+        type: String,
+        required: false
+    },
+    // prospectoHijos: {
+    //     hijos: [
+    //         {
+    //         hijoNombre: String,
+    //         hijoEdad: Number,
+    //         hijoNotas: String
+    //         }
+    //     ],
+    //     required: false
+    // },
+    prospectoTipoVivienda: {
+        type: String,
+        required: false
+    },
+    prospectoPasatiempo: {
+        type: String,
+        required: false
+    },
+    prospectoMascotas: {
+        type: String,
+        required: false
+    },
+    prospectoDeporte: {
+        type: String,
+        required: false
     },
     prospectoReferido: {
         type: String,
-        require: true,
+        required: false,
     },
     prospectoDesde: {
         type: Date,
@@ -68,8 +130,8 @@ const ProspectoSchema = Schema({
     },
     prospectoNotas: {
         type: String,
-        required: true,
-    },
+        required: false,
+    }
 });
 
 ProspectoSchema.method('toJSON', function() {

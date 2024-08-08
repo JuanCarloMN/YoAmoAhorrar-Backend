@@ -21,6 +21,7 @@ const obtenerClientes = async ( req, res = response ) => {
 }
 
 const agregarCliente = async ( req, res = response ) => {
+    
     const cliente = new Cliente( req.body );
 
     try {

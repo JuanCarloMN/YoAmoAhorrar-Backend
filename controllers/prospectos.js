@@ -20,6 +20,7 @@ const obtenerProspectos = async ( req, res = response ) => {
 }
 
 const agregarProspecto = async ( req, res = response ) => {
+    
     const prospecto = new Prospecto( req.body );
 
     try {

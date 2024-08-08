@@ -26,7 +26,6 @@ const buscarCodigoPostal = async ( req, res = response ) => {
 
         const codigoPostal = await Codigopostales.find( { cp: parseInt( req.params.cp ) }  );
 
-        console.log({cp: parseInt( req.params.cp ), codigoPostal});
         if ( !codigoPostal ) {
             return res.status(404).json({
                 ok: false,
