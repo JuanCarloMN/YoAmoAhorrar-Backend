@@ -7,6 +7,7 @@ const { check } = require('express-validator');
 
 const { fieldsValidate } = require('../middlewares/fields-validate');
 const { agregarMensaje } = require('../controllers/mensajes');
+const { obtenerBlogs } = require('../controllers/blog');
 
 const router = Router();
 
@@ -23,5 +24,8 @@ router.post(
         fieldsValidate
     ],
     agregarMensaje );
+
+// Obtener blogs
+router.get( '/obtenerBlogs', obtenerBlogs );
 
 module.exports = router;

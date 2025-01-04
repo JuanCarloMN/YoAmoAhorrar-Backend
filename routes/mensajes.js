@@ -7,7 +7,7 @@ const { check } = require('express-validator');
 
 const { fieldsValidate } = require('../middlewares/fields-validate');
 const { jwtValidate } = require('../middlewares/jwt-validate');
-const { obtenerMensajes, agregarMensaje, eliminarMensaje, actualizarMensaje } = require('../controllers/mensajes');
+const { obtenerMensajes, eliminarMensaje, actualizarMensaje } = require('../controllers/mensajes');
 
 const router = Router();
 

@@ -22,6 +22,7 @@ app.use( express.json() );
 
 // Rutas
 app.use( '/api/auth', require('./routes/auth') );
+app.use( '/api/blog', require('./routes/blog') );
 app.use( '/api/catalogos', require('./routes/catalogos') );
 app.use( '/api/clientes', require('./routes/clientes') );
 app.use( '/api/codigoPostal', require('./routes/codigoPostal') );
