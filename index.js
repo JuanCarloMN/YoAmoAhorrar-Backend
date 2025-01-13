@@ -30,6 +30,7 @@ app.use( '/api/eventos', require('./routes/eventos') );
 app.use( '/api/libres', require('./routes/libres') );
 app.use( '/api/mensajes', require('./routes/mensajes') );
 app.use( '/api/prospectos', require('./routes/prospectos') );
+app.use( '/api/suscriptores', require('./routes/suscriptores') );
 
 app.use( '*', ( req, res ) => {
     res.sendFile( path.join( __dirname, 'public/index.html') );

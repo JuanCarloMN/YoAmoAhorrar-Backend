@@ -8,6 +8,7 @@ const { check } = require('express-validator');
 const { fieldsValidate } = require('../middlewares/fields-validate');
 const { agregarMensaje } = require('../controllers/mensajes');
 const { obtenerBlogs } = require('../controllers/blog');
+const { suscripcionBlog } = require('../controllers/suscriptores');
 
 const router = Router();
 
@@ -28,4 +29,12 @@ router.post(
 // Obtener blogs
 router.get( '/obtenerBlogs', obtenerBlogs );
 
+// Suscribirse a blog
+router.post( 
+    '/suscribirseBlog', 
+    [
+        check('suscriptorEmail', 'El eMail de quien se suscribe es obligatorio').isEmail(),
+        fieldsValidate
+    ],
+    suscripcionBlog );
 module.exports = router;

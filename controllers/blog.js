@@ -108,8 +108,8 @@ const eliminarBlog = async ( req, res = response ) => {
 }
 
 module.exports = {
-    obtenerBlogs,
-    agregarBlog,
     actualizarBlog,
+    agregarBlog,
     eliminarBlog,
+    obtenerBlogs,
 }
