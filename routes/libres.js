@@ -9,6 +9,7 @@ const { fieldsValidate } = require('../middlewares/fields-validate');
 const { agregarMensaje } = require('../controllers/mensajes');
 const { obtenerBlogs } = require('../controllers/blog');
 const { suscripcionBlog } = require('../controllers/suscriptores');
+const { obtenerNoticias } = require('../controllers/noticias');
 
 const router = Router();
 
@@ -28,6 +29,9 @@ router.post(
 
 // Obtener blogs
 router.get( '/obtenerBlogs', obtenerBlogs );
+
+// Obtener noticias
+router.get( '/obtenerNoticias', obtenerNoticias );
 
 // Suscribirse a blog
 router.post( 

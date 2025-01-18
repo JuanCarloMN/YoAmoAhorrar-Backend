@@ -16,7 +16,6 @@ const crearUsuario = async ( req, res = response ) => {
                 msg: 'Un usuario existe con ese correo',
             })
         }
-console.log(req.body);
 
         usuario = new Usuario( req.body );
         
@@ -50,7 +49,6 @@ const loginUsuario = async ( req, res = response ) => {
     const { email, password } = req.body;
 
     try {
-        console.log(req.body);
         
         let usuario = await Usuario.findOne({ email });
             

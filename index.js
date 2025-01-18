@@ -29,6 +29,7 @@ app.use( '/api/codigoPostal', require('./routes/codigoPostal') );
 app.use( '/api/eventos', require('./routes/eventos') );
 app.use( '/api/libres', require('./routes/libres') );
 app.use( '/api/mensajes', require('./routes/mensajes') );
+app.use( '/api/noticias', require('./routes/noticias') );
 app.use( '/api/prospectos', require('./routes/prospectos') );
 app.use( '/api/suscriptores', require('./routes/suscriptores') );
 

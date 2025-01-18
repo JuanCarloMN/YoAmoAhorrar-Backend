@@ -1,33 +1,33 @@
 const { Schema, model } = require('mongoose');
 
-const BlogSchema = Schema({
+const NoticiaSchema = Schema({
 
-    blogTitulo: {
+    noticiaTitulo: {
         type: String,
         required: true
     },
-    blogDetalle: {
+    noticiaDetalle: {
         type: String,
         required: true,
     },
-    blogCategoria: {
+    noticiaCategoria: {
         type: String,
         required: true,
     },
-    blogUsuario: {
+    noticiaUsuario: {
         type: String,
         required: true,
     },
-    blogFecha: {
+    noticiaFecha: {
         type: Date,
         required: true
     },
-    blogActivado: {
+    noticiaActivada: {
         type: Boolean,
         default: true,
         required: false,
     },
-    blogFotos: [
+    noticiaFotos: [
         {
         foto: {
             type: String,
@@ -37,10 +37,10 @@ const BlogSchema = Schema({
     ]
 });
 
-BlogSchema.method('toJSON', function() {
+NoticiaSchema.method('toJSON', function() {
     const { __v, _id, ...object } = this.toObject();
     object.id = _id;
     return object;
 });
 
-module.exports = model( 'Blog', BlogSchema )
+module.exports = model( 'Noticia', NoticiaSchema )
