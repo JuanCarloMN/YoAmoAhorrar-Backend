@@ -1,26 +1,26 @@
 /*
-    Rutas de opciones libres de autenticación
-    host + /api/libres
+    Rutas de Citas
+    host + /api/citas
 */
 const { Router } = require('express');
 const { check } = require('express-validator');
 
-const { fieldsValidate } = require('../middlewares/fields-validate');
-const { agregarMensaje } = require('../controllers/mensajes');
-const { obtenerBlogs } = require('../controllers/blog');
-const { suscripcionBlog } = require('../controllers/suscriptores');
-const { obtenerNoticias } = require('../controllers/noticias');
-const { obtenerCitas, agregarCita, actualizarCita, eliminarCita } = require('../controllers/citas');
 const { isDate } = require('../helpers/isDate');
+const { fieldsValidate } = require('../middlewares/fields-validate');
+const { jwtValidate } = require('../middlewares/jwt-validate');
+const { obtenerCitas, agregarCita, actualizarCita, eliminarCita } = require('../controllers/citas');
 
 const router = Router();
 
 // Todos tienen que pasar por la validación del JWT
 // router.use( jwtValidate );
 
-// Agregar cita
+// Obtener Citas
+router.get( '/', obtenerCitas );
+
+// Agregar Cita
 router.post( 
-    '/nuevaCita', 
+    '/nuevo', 
     [
         check('titulo', 'El título de la cita es obligatorio').not().isEmpty(),
         check('nombre', 'El nombre de quien pide la cita es obligatorio').not().isEmpty(),
@@ -32,9 +32,9 @@ router.post(
     ],
     agregarCita );
 
-// Actualizar cita
+// Actualizar Cita
 router.put( 
-    '/actulizarCita/:id', 
+    '/:id', 
     [
         check('titulo', 'El título de la cita es obligatorio').not().isEmpty(),
         check('nombre', 'El nombre de quien pide la cita es obligatorio').not().isEmpty(),
@@ -46,36 +46,7 @@ router.put(
     ],
     actualizarCita );
 
-// Eliminar cita
-router.delete( '/eliminarCita/:id', eliminarCita );
-
-// Obtener citas
-router.get( '/obtenerCitas', obtenerCitas );
-
-// Obtener blogs
-router.get( '/obtenerBlogs', obtenerBlogs );
-
-// Suscribirse a blog
-router.post( 
-    '/suscribirseBlog', 
-    [
-        check('suscriptorEmail', 'El eMail de quien se suscribe es obligatorio').isEmail(),
-        fieldsValidate
-    ],
-    suscripcionBlog );
-
-// Obtener noticias
-router.get( '/obtenerNoticias', obtenerNoticias );
-
-// Agregar mensaje
-router.post( 
-    '/nuevoMensaje', 
-    [
-        check('mensajeNombre', 'El nombre de quien envia el mensaje es obligatorio').not().isEmpty(),
-        check('mensajeEmail', 'El eMail de quien envia el mensaje es obligatorio').isEmail(),
-        check('mensajeDetalle', 'El mensaje es obligatorio').not().isEmpty(),
-        fieldsValidate
-    ],
-    agregarMensaje );
+// Eliminar Cita
+router.delete( '/:id', eliminarCita );
 
 module.exports = router;

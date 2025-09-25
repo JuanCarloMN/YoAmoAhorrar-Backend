@@ -32,6 +32,7 @@ app.use( '/api/mensajes', require('./routes/mensajes') );
 app.use( '/api/noticias', require('./routes/noticias') );
 app.use( '/api/prospectos', require('./routes/prospectos') );
 app.use( '/api/suscriptores', require('./routes/suscriptores') );
+app.use( '/api/citas', require('./routes/citas') );
 
 app.use( '*', ( req, res ) => {
     res.sendFile( path.join( __dirname, 'public/index.html') );
