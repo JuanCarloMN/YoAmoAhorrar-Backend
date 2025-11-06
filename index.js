@@ -35,6 +35,21 @@ app.use( '/api/suscriptores', require('./routes/suscriptores') );
 app.use( '/api/citas', require('./routes/citas') );
 app.use( '/api/perfil', require('./routes/perfil') );
 
+
+// endpoint para los indicadores
+app.get('/api/indicadores', async (req, res) => {
+    const fechaActual = new Date();
+    const fechaInicio = "2025-04-04";
+    const fechaFin = `${fechaActual.getFullYear() }-${ (fechaActual.getMonth()+1).toString().padStart(2,'0') }-${ fechaActual.getDate().toString().padStart(2,'0') }`;
+    const ruta = process.env.VITE_API_BANXICO_URL + process.env.VITE_API_BANXICO_SERIE_UDI + ',' + process.env.VITE_API_BANXICO_SERIE_DOLAR + '/datos/' + fechaInicio + '/' + fechaFin + '?token=' + process.env.VITE_BANXICO_TOKEN_KEY;
+    const response = await fetch(ruta);
+    console.log(response);
+    
+    const body = await response.text();
+    res.set('Content-Type', response.headers.get('content-type') || 'application/json')
+    res.send(body)
+})
+
 app.use( '*', ( req, res ) => {
     res.sendFile( path.join( __dirname, 'public/index.html') );
 })
