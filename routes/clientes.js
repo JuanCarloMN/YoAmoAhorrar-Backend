@@ -8,7 +8,7 @@ const { check } = require('express-validator');
 const { isDate } = require('../helpers/isDate');
 const { fieldsValidate } = require('../middlewares/fields-validate');
 const { jwtValidate } = require('../middlewares/jwt-validate');
-const { agregarCliente, obtenerClientes, actualizarCliente, eliminarCliente } = require('../controllers/clientes');
+const { agregarCliente, obtenerClientes, actualizarCliente, eliminarCliente, buscarCliente } = require('../controllers/clientes');
 
 const router = Router();
 
@@ -49,6 +49,9 @@ router.put(
         fieldsValidate
     ],
     actualizarCliente );
+
+// Buscar cliente
+router.get( '/:id', buscarCliente );
 
 // Eliminar cliente
 router.delete( '/:id', eliminarCliente );

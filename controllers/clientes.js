@@ -77,6 +77,40 @@ const actualizarCliente = async ( req, res = response ) => {
     }
 }
 
+const buscarCliente = async ( req, res = response ) => {
+
+    try {
+
+        const cliente = await Cliente.find({ clienteRFC: req.params.id });
+
+        if ( !cliente ) {
+            return res.status(204).json({
+                ok: false,
+                msg: 'No se encontró el cliente'
+            });
+        }
+
+        if ( cliente.length === 0 ){
+            return res.status(204).json({
+                ok: false,
+                msg: 'No se encontró el cliente'
+            });
+        }
+        
+        return res.status(200).json({
+            ok: true,
+            cliente: cliente
+        })
+
+    } catch (error) {
+        console.log( error );
+        res.status(500).json({
+            ok: false,
+            msg: 'Problemas al buscar la información del cliente'
+        })
+    }
+}
+
 const eliminarCliente = async ( req, res = response ) => {
     
     const clienteId = req.params.id;
@@ -108,8 +142,9 @@ const eliminarCliente = async ( req, res = response ) => {
 }
 
 module.exports = {
-    obtenerClientes,
-    agregarCliente,
     actualizarCliente,
+    agregarCliente,
+    buscarCliente,
     eliminarCliente,
+    obtenerClientes,
 }
