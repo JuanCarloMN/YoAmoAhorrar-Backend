@@ -176,11 +176,9 @@ const actualizarDato = async ( req, res = response ) => {
 }
 
 const eliminarDato = async ( req, res = response ) => {
-    const dato = req.body;
-
+    const dato = req.body;    
     try {
-
-        const catalogo = await Catalogo.findById( dato.id );
+        const catalogo = await Catalogo.findById( req.params.id );
         if ( !catalogo ) {
             return res.status(404).json({
                 ok: false,
@@ -188,8 +186,9 @@ const eliminarDato = async ( req, res = response ) => {
             });
         }
 
-        const datoEliminar = await Catalogo.findByIdAndDelete( { _id : catalogo.id }, { $pull : { "catalogoDatos": { "_id": dato.idEliminar } } } );
-        
+        const datoEliminar = await Catalogo.findOneAndUpdate( { '_id': req.params.id }, { $set: { $pull: { 'catalogoDatos._id': dato.idEliminar } } } );
+            // { $pull : { "catalogoDatos": { "_id": dato.idEliminar } } } );
+                    
         if ( datoEliminar.modifiedCount > 0 ) {
             res.status(200).json({
                 ok: true,
