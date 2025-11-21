@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const PolizaSchema = Schema({
 
@@ -7,63 +7,93 @@ const PolizaSchema = Schema({
         required: true,
         unique: true
     },
+    polizaTipo: {
+        type: String,
+        required: true,
+    },
+    polizaPlan: {
+        type: String,
+        default: '',
+        required: false,
+    },
+    polizaTipoMoneda: {
+        type: String,
+        required: true,
+    },
     polizaMonto: {
         type: Number,
-        required: true,
-    },
-    polizaPlazo: {
-        type: Number,
-        required: true,
-    },
-    polizaEmision: {
-        type: Date,
+        default: 0,
         required: true,
     },
     polizaSumaAsegurada: {
         type: Number,
-        required: true,
+        default: 0,
+        required: false,
     },
     polizaPrimaPlaneada: {
         type: Number,
-        required: true,
+        default: 0,
+        required: false,
     },
     polizaPrimaBasica: {
         type: Number,
+        default: 0,
+        required: false,
+    },
+    polizaDeducible: {
+        type: Number,
+        default: 0,
+        required: false,
+    },
+    polizaCoaseguro: {
+        type: Number,
+        default: 0,
+        required: false,
+    },
+    polizaTope: {
+        type: Number,
+        default: 0,
+        required: false,
+    },
+    polizaPlazo: {
+        type: Number,
+        required: false,
+    },
+    polizaTipoPlazo: {
+        type: String,
+        default: '',
+        required: false,
+    },
+    polizaFecha: {
+        type: Date,
         required: true,
     },
-    polizaClienteId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Cliente',
+    polizaCliente: {
+        type: String,
         required: true,
     },
-    polizaTipoPolizaClave: {
-        type: Schema.Types.ObjectId,
-        ref: 'TipoPoliza',
+    polizaTipoPago: {
+        type: String,
+        default: '',
+        required: false,
+    },
+    polizaAsesor: {
+        type: String,
         required: true,
     },
-    polizaTipoPagoId: {
-        type: Schema.Types.ObjectId,
-        ref: 'TipoPago',
+    polizaAseguradora: {
+        type: String,
         required: true,
     },
-    polizaEstatusId: {
-        type: Schema.Types.ObjectId,
-        ref: 'TipoEstatus',
-        required: true,
-    },
-    polizaTipoMonedaId: {
-        type: Schema.Types.ObjectId,
-        ref: 'TipoMoneda',
-        required: true,
-    },
-    polizaAgendeId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Agente',
+    polizaEstatus: {
+        type: String,
+        default: 'Activo',
         required: true,
     },
     polizaNotas: {
         type: String,
-        required: true,
+        default: '',
+        required: false,
     },
 })
 
@@ -73,4 +103,4 @@ PolizaSchema.method('toJSON', function() {
     return object;
 });
 
-module.exports = model( 'Poliza', PolizaSchemaSchema )
+module.exports = model( 'Poliza', PolizaSchema )

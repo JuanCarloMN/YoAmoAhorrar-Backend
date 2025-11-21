@@ -74,6 +74,40 @@ const actualizarProspecto = async ( req, res = response ) => {
     }
 }
 
+const buscarProspecto = async ( req, res = response ) => {
+
+    try {
+
+        const prospecto = await Prospecto.find({ prospectoRFC: req.params.id });
+
+        if ( !prospecto ) {
+            return res.status(204).json({
+                ok: true,
+                msg: 'No se encontró el prospecto'
+            });
+        }
+
+        if ( prospecto.length === 0 ){
+            return res.status(204).json({
+                ok: true,
+                msg: 'No se encontró el prospecto'
+            });
+        }
+        
+        return res.status(200).json({
+            ok: true,
+            prospecto: prospecto
+        })
+
+    } catch (error) {
+        console.log( error );
+        res.status(500).json({
+            ok: false,
+            msg: 'Problemas al buscar la información del prospecto'
+        })
+    }
+}
+
 const eliminarProspecto = async ( req, res = response ) => {
     
     const prospectoId = req.params.id;
@@ -104,8 +138,9 @@ const eliminarProspecto = async ( req, res = response ) => {
 }
 
 module.exports = {
-    obtenerProspectos,
-    agregarProspecto,
     actualizarProspecto,
+    agregarProspecto,
+    buscarProspecto,
     eliminarProspecto,
+    obtenerProspectos,
 }

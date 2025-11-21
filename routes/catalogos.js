@@ -40,7 +40,7 @@ router.put(
     actualizarCatalogo );
 
 // Eliminar catalogo
-// router.delete( '/:id', eliminarCatalogo );
+router.delete( '/:id', eliminarCatalogo );
 
 // *************** DATOS *************** //
 

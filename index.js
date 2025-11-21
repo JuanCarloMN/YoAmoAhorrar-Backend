@@ -27,6 +27,7 @@ app.use( '/api/blog', require('./routes/blog') );
 app.use( '/api/catalogos', require('./routes/catalogos') );
 app.use( '/api/citas', require('./routes/citas') );
 app.use( '/api/clientes', require('./routes/clientes') );
+app.use( '/api/polizas', require('./routes/polizas') );
 app.use( '/api/codigoPostal', require('./routes/codigoPostal') );
 app.use( '/api/eventos', require('./routes/eventos') );
 app.use( '/api/libres', require('./routes/libres') );

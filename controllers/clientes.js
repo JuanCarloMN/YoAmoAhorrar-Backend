@@ -85,14 +85,14 @@ const buscarCliente = async ( req, res = response ) => {
 
         if ( !cliente ) {
             return res.status(204).json({
-                ok: false,
+                ok: true,
                 msg: 'No se encontró el cliente'
             });
         }
 
         if ( cliente.length === 0 ){
             return res.status(204).json({
-                ok: false,
+                ok: true,
                 msg: 'No se encontró el cliente'
             });
         }

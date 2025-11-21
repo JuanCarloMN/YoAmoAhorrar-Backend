@@ -8,7 +8,7 @@ const { check } = require('express-validator');
 const { isDate } = require('../helpers/isDate');
 const { fieldsValidate } = require('../middlewares/fields-validate');
 const { jwtValidate } = require('../middlewares/jwt-validate');
-const { agregarProspecto, obtenerProspectos, actualizarProspecto, eliminarProspecto } = require('../controllers/prospectos');
+const { agregarProspecto, obtenerProspectos, actualizarProspecto, eliminarProspecto, buscarProspecto } = require('../controllers/prospectos');
 
 const router = Router();
 
@@ -49,6 +49,9 @@ router.put(
         fieldsValidate
     ],
     actualizarProspecto );
+
+// Buscar prospecto
+router.get( '/:id', buscarProspecto );
 
 // Eliminar prospecto
 router.delete( '/:id', eliminarProspecto );
