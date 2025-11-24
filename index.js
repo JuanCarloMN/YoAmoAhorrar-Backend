@@ -27,7 +27,6 @@ app.use( '/api/blog', require('./routes/blog') );
 app.use( '/api/catalogos', require('./routes/catalogos') );
 app.use( '/api/citas', require('./routes/citas') );
 app.use( '/api/clientes', require('./routes/clientes') );
-app.use( '/api/polizas', require('./routes/polizas') );
 app.use( '/api/codigoPostal', require('./routes/codigoPostal') );
 app.use( '/api/eventos', require('./routes/eventos') );
 app.use( '/api/libres', require('./routes/libres') );
@@ -35,7 +34,9 @@ app.use( '/api/mensajes', require('./routes/mensajes') );
 app.use( '/api/notas', require('./routes/notas') );
 app.use( '/api/noticias', require('./routes/noticias') );
 app.use( '/api/perfil', require('./routes/perfil') );
+app.use( '/api/polizas', require('./routes/polizas') );
 app.use( '/api/prospectos', require('./routes/prospectos') );
+app.use( '/api/respaldo', require('./routes/respaldo') );
 app.use( '/api/suscriptores', require('./routes/suscriptores') );
 
 

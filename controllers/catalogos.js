@@ -3,14 +3,11 @@ const Catalogo = require("../modelos/Catalogo");
 
 const obtenerCatalogos = async ( req, res = response ) => {
     try {
-
         const catalogos = await Catalogo.find();
-
         res.status(200).json({
             ok: true,
             catalogos
         })
-        
     } catch (error) {
         console.log( error );
         res.status(500).json({
@@ -22,16 +19,12 @@ const obtenerCatalogos = async ( req, res = response ) => {
 
 const agregarCatalogo = async ( req, res = response ) => {
     const catalogo = new Catalogo( req.body );
-
     try {
-
         const catalogoGuardado = await catalogo.save();
-
         res.status(201).json({
             ok: true,
             catalogo: catalogoGuardado
         })
-        
     } catch (error) {
         console.log( error );
         res.status(500).json({
@@ -42,14 +35,10 @@ const agregarCatalogo = async ( req, res = response ) => {
 }
 
 const actualizarCatalogo = async ( req, res = response ) => {
-
     const catalogoId = req.params.id;
     const uid = req.uid;
-
     try {
-
         const catalogo = await Catalogo.findById( catalogoId );
-
         if ( !catalogo ) {
             return res.status(404).json({
                 ok: false,
@@ -60,13 +49,11 @@ const actualizarCatalogo = async ( req, res = response ) => {
         const nuevoCatalogo = {
             ...req.body,
         }
-        
         const catalogoActualizado = await Catalogo.findByIdAndUpdate( catalogoId, nuevoCatalogo, { new: true } );
         res.status(200).json({
             ok: true,
             catalogo: catalogoActualizado
         })
-        
     } catch (error) {
         console.log( error );
         res.status(500).json({
@@ -77,13 +64,9 @@ const actualizarCatalogo = async ( req, res = response ) => {
 }
 
 const eliminarCatalogo = async ( req, res = response ) => {
-    
     const catalogoId = req.params.id;
-
     try {
-
         const catalogo = await Catalogo.findById( catalogoId );
-
         if ( !catalogo ) {
             return res.status(404).json({
                 ok: false,
@@ -96,7 +79,6 @@ const eliminarCatalogo = async ( req, res = response ) => {
             ok: true,
             catalogo: catalogoEliminado
         })
-        
     } catch (error) {
         console.log( error );
         res.status(500).json({
@@ -108,7 +90,6 @@ const eliminarCatalogo = async ( req, res = response ) => {
 
 const agregarDato = async ( req, res = response ) => {
     const dato = req.body ;
-
     try {
         const catalogo = await Catalogo.findById( dato.id );
         if ( !catalogo ) {
@@ -128,7 +109,6 @@ const agregarDato = async ( req, res = response ) => {
             ok: true,
             dato: datoGuardado
         })
-        
     } catch (error) {
         console.log( error );
         res.status(500).json({
@@ -140,9 +120,7 @@ const agregarDato = async ( req, res = response ) => {
 
 const actualizarDato = async ( req, res = response ) => {
     const dato = req.body;
-
     try {
-
         const catalogo = await Catalogo.findById( req.params.id );
         if ( !catalogo ) {
             return res.status(404).json({
@@ -153,7 +131,6 @@ const actualizarDato = async ( req, res = response ) => {
 
         const actualizar = await Catalogo.updateOne( { '_id': req.params.id }, { $set: { 'catalogoDatos.$[catDato].descripcion': dato.descripcion } }, { arrayFilters: [{ "catDato._id": dato.idActualizar }] }, { new: true} )
         if ( actualizar.modifiedCount > 0 ) {
-
             const datoActualizado = await Catalogo.findById( req.params.id );
             res.status(200).json({
                 ok: true,
@@ -165,7 +142,6 @@ const actualizarDato = async ( req, res = response ) => {
                 msg: "No se pudo actualizar el dato del catálogo"
             })
         }
-        
     } catch (error) {
         console.log( error );
         res.status(500).json({
@@ -175,9 +151,9 @@ const actualizarDato = async ( req, res = response ) => {
     }
 }
 
-const eliminarDato = async ( req, res = response ) => {
+const eliminarDato = async ( req, res = response ) => {    
     const dato = req.body;    
-    try {
+    try {        
         const catalogo = await Catalogo.findById( req.params.id );
         if ( !catalogo ) {
             return res.status(404).json({
@@ -186,9 +162,7 @@ const eliminarDato = async ( req, res = response ) => {
             });
         }
 
-        const datoEliminar = await Catalogo.findOneAndUpdate( { '_id': req.params.id }, { $set: { $pull: { 'catalogoDatos._id': dato.idEliminar } } } );
-            // { $pull : { "catalogoDatos": { "_id": dato.idEliminar } } } );
-                    
+        const datoEliminar = await Catalogo.updateOne({ '_id': req.params.id }, { $pull: { 'catalogoDatos': { '_id': dato.idEliminar }} });
         if ( datoEliminar.modifiedCount > 0 ) {
             res.status(200).json({
                 ok: true,
@@ -200,7 +174,6 @@ const eliminarDato = async ( req, res = response ) => {
                 msg: "No se pudo eliminar el dato del catálogo"
             })
         }
-        
     } catch (error) {
         console.log( error );
         res.status(500).json({

@@ -66,7 +66,7 @@ router.put(
     actualizarDato);
 
 // Elimina un dato de catalogoDatos en un catálogo
-router.delete(
+router.put(
     '/eliminaDato/:id',
     [
         check('id', 'El ID del catálogo es obligatorio').not().isEmpty(),
