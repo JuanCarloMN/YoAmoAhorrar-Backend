@@ -34,6 +34,7 @@ app.use( '/api/mensajes', require('./routes/mensajes') );
 app.use( '/api/notas', require('./routes/notas') );
 app.use( '/api/noticias', require('./routes/noticias') );
 app.use( '/api/perfil', require('./routes/perfil') );
+app.use( '/api/planificador', require('./routes/planificador') );
 app.use( '/api/polizas', require('./routes/polizas') );
 app.use( '/api/prospectos', require('./routes/prospectos') );
 app.use( '/api/respaldo', require('./routes/respaldo') );
